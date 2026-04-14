@@ -1,0 +1,14 @@
+[Unit]
+Description=Generic Backend
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/generic-backend
+Environment=DATA_DIR=/opt/generic-backend/data
+ExecStart=/opt/generic-backend/.venv/bin/uvicorn main:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+User=www-data
+
+[Install]
+WantedBy=multi-user.target
